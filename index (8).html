@@ -1,0 +1,318 @@
+<html class="scroll-smooth" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Admin Dashboard - Dark Theme
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+ </head>
+ <body class="bg-gray-900 text-gray-300 transition-colors duration-500">
+  <div class="flex h-screen overflow-hidden" id="app">
+   <!-- Sidebar -->
+   <aside class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 shadow-lg transform -translate-x-0 md:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto" id="sidebar">
+    <div class="flex items-center justify-center h-16 border-b border-gray-700">
+     <img alt="Admin Dashboard Logo, stylized letter A in blue and white" class="w-8 h-8 mr-2" height="32" src="https://storage.googleapis.com/a1aa/image/b503d85b-b0eb-4f82-6403-843287dc8690.jpg" width="32"/>
+     <h1 class="text-white font-bold text-xl select-none">
+      AdminPanel
+     </h1>
+    </div>
+    <nav class="mt-6 px-4">
+     <ul class="space-y-2">
+      <li>
+       <a class="flex items-center p-3 rounded-md text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#">
+        <i class="fas fa-tachometer-alt icon-spin w-5 h-5 mr-3 text-indigo-400">
+        </i>
+        <span class="font-semibold">
+         Dashboard
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="flex items-center p-3 rounded-md text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#">
+        <i class="fas fa-users icon-spin w-5 h-5 mr-3 text-indigo-400">
+        </i>
+        <span class="font-semibold">
+         Users
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="flex items-center p-3 rounded-md text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#">
+        <i class="fas fa-shopping-cart icon-spin w-5 h-5 mr-3 text-indigo-400">
+        </i>
+        <span class="font-semibold">
+         Sales
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="flex items-center p-3 rounded-md text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#">
+        <i class="fas fa-chart-line icon-spin w-5 h-5 mr-3 text-indigo-400">
+        </i>
+        <span class="font-semibold">
+         Performance
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="flex items-center p-3 rounded-md text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#">
+        <i class="fas fa-cogs icon-spin w-5 h-5 mr-3 text-indigo-400">
+        </i>
+        <span class="font-semibold">
+         Settings
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="flex items-center p-3 rounded-md text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#">
+        <i class="fas fa-file-alt icon-spin w-5 h-5 mr-3 text-indigo-400">
+        </i>
+        <span class="font-semibold">
+         Reports
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="flex items-center p-3 rounded-md text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#">
+        <i class="fas fa-life-ring icon-spin w-5 h-5 mr-3 text-indigo-400">
+        </i>
+        <span class="font-semibold">
+         Support
+        </span>
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </aside>
+   <!-- Overlay for mobile sidebar -->
+   <div class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden" id="overlay">
+   </div>
+   <!-- Main content wrapper -->
+   <div class="flex-1 flex flex-col overflow-hidden ml-0 md:ml-64 transition-all duration-300 ease-in-out">
+    <!-- Top Navbar -->
+    <header class="flex items-center justify-between bg-gray-800 h-16 px-4 border-b border-gray-700 shadow-sm">
+     <div class="flex items-center space-x-4">
+      <button aria-label="Toggle sidebar" class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 md:hidden" id="sidebarToggle">
+       <i class="fas fa-bars fa-lg">
+       </i>
+      </button>
+      <form class="relative hidden sm:block">
+       <input aria-label="Search" class="bg-gray-700 text-gray-300 placeholder-gray-400 rounded-md pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-gray-600 transition-colors duration-300 w-64" placeholder="Search..." type="search"/>
+       <div class="absolute left-3 top-2.5 text-gray-400 pointer-events-none">
+        <i class="fas fa-search">
+        </i>
+       </div>
+      </form>
+     </div>
+     <div class="flex items-center space-x-4">
+      <button aria-label="Toggle light/dark mode" class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 p-2 rounded-md transition-colors duration-300" id="modeToggle">
+       <i class="fas fa-moon fa-lg">
+       </i>
+      </button>
+      <div class="relative" x-data="{ open: false }">
+       <button aria-expanded="false" aria-haspopup="true" class="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md p-1 hover:bg-gray-700 transition-colors duration-300" id="profileBtn">
+        <img alt="User profile picture of John Doe, blue background with white initials JD" class="w-8 h-8 rounded-full" height="32" src="https://storage.googleapis.com/a1aa/image/a12dc7a8-9f29-4a10-033f-3cc4d7bb68de.jpg" width="32"/>
+        <span class="hidden sm:block font-semibold text-gray-200">
+         John Doe
+        </span>
+        <i class="fas fa-chevron-down text-gray-400">
+        </i>
+       </button>
+       <div aria-labelledby="profileBtn" aria-orientation="vertical" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 py-1 z-50 hidden" id="profileDropdown" role="menu" tabindex="-1">
+        <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#" role="menuitem" tabindex="-1">
+         Profile
+        </a>
+        <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#" role="menuitem" tabindex="-1">
+         Settings
+        </a>
+        <a class="block px-4 py-2 text-sm text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="#" role="menuitem" tabindex="-1">
+         Logout
+        </a>
+       </div>
+      </div>
+     </div>
+    </header>
+    <!-- Main content -->
+    <main class="flex-1 overflow-y-auto p-6 bg-gray-900">
+     <h2 class="text-3xl font-bold mb-6 text-white select-none">
+      Dashboard Overview
+     </h2>
+     <section aria-label="Key analytics cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <article class="bg-gray-800 rounded-lg shadow-md p-5 flex items-center space-x-4 hover:shadow-indigo-600 transition-shadow duration-300 cursor-default">
+       <div aria-hidden="true" class="p-3 rounded-full bg-indigo-600 text-white flex items-center justify-center icon-spin">
+        <i class="fas fa-users fa-2x">
+        </i>
+       </div>
+       <div>
+        <p class="text-gray-400 uppercase text-xs font-semibold tracking-wide">
+         Total Users
+        </p>
+        <p class="text-2xl font-bold text-white">
+         12,345
+        </p>
+        <p class="text-green-400 text-sm mt-1 flex items-center">
+         <i class="fas fa-arrow-up mr-1">
+         </i>
+         8.4% since last month
+        </p>
+       </div>
+      </article>
+      <article class="bg-gray-800 rounded-lg shadow-md p-5 flex items-center space-x-4 hover:shadow-indigo-600 transition-shadow duration-300 cursor-default">
+       <div aria-hidden="true" class="p-3 rounded-full bg-indigo-600 text-white flex items-center justify-center icon-spin">
+        <i class="fas fa-shopping-cart fa-2x">
+        </i>
+       </div>
+       <div>
+        <p class="text-gray-400 uppercase text-xs font-semibold tracking-wide">
+         Total Sales
+        </p>
+        <p class="text-2xl font-bold text-white">
+         $98,765
+        </p>
+        <p class="text-red-400 text-sm mt-1 flex items-center">
+         <i class="fas fa-arrow-down mr-1">
+         </i>
+         2.1% since last week
+        </p>
+       </div>
+      </article>
+      <article class="bg-gray-800 rounded-lg shadow-md p-5 flex items-center space-x-4 hover:shadow-indigo-600 transition-shadow duration-300 cursor-default">
+       <div aria-hidden="true" class="p-3 rounded-full bg-indigo-600 text-white flex items-center justify-center icon-spin">
+        <i class="fas fa-chart-line fa-2x">
+        </i>
+       </div>
+       <div>
+        <p class="text-gray-400 uppercase text-xs font-semibold tracking-wide">
+         Performance
+        </p>
+        <p class="text-2xl font-bold text-white">
+         89.7%
+        </p>
+        <p class="text-green-400 text-sm mt-1 flex items-center">
+         <i class="fas fa-arrow-up mr-1">
+         </i>
+         5.6% since last quarter
+        </p>
+       </div>
+      </article>
+      <article class="bg-gray-800 rounded-lg shadow-md p-5 flex items-center space-x-4 hover:shadow-indigo-600 transition-shadow duration-300 cursor-default">
+       <div aria-hidden="true" class="p-3 rounded-full bg-indigo-600 text-white flex items-center justify-center icon-spin">
+        <i class="fas fa-dollar-sign fa-2x">
+        </i>
+       </div>
+       <div>
+        <p class="text-gray-400 uppercase text-xs font-semibold tracking-wide">
+         Revenue
+        </p>
+        <p class="text-2xl font-bold text-white">
+         $123,456
+        </p>
+        <p class="text-green-400 text-sm mt-1 flex items-center">
+         <i class="fas fa-arrow-up mr-1">
+         </i>
+         12.3% since last year
+        </p>
+       </div>
+      </article>
+     </section>
+     <section aria-label="Additional analytics and charts" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section aria-label="User growth chart" class="bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+       <h3 class="text-white font-semibold text-lg mb-4 select-none">
+        User Growth (Last 6 Months)
+       </h3>
+       <img alt="Line chart placeholder showing user growth over last 6 months with upward trend, blue and purple colors on dark background" class="rounded-md w-full h-auto" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/7422d11d-e266-422d-2e12-e6213c97510b.jpg" width="600"/>
+      </section>
+      <section aria-label="Sales by category" class="bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+       <h3 class="text-white font-semibold text-lg mb-4 select-none">
+        Sales by Category
+       </h3>
+       <img alt="Pie chart placeholder showing sales distribution by category with blue and purple segments on dark background" class="rounded-md w-full h-auto" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/bdda2293-7275-4f93-bb4c-0b37d1e7a35b.jpg" width="600"/>
+      </section>
+      <section aria-label="Recent activities" class="bg-gray-800 rounded-lg shadow-md p-6 flex flex-col">
+       <h3 class="text-white font-semibold text-lg mb-4 select-none">
+        Recent Activities
+       </h3>
+       <ul class="divide-y divide-gray-700 overflow-y-auto max-h-72">
+        <li class="py-3 flex items-center space-x-3">
+         <img alt="User avatar with initials AB in blue background" class="w-10 h-10 rounded-full flex-shrink-0" height="40" src="https://storage.googleapis.com/a1aa/image/66b0258d-de50-484d-d744-d544f84a1202.jpg" width="40"/>
+         <div class="flex-1 min-w-0">
+          <p class="text-sm font-semibold text-white truncate">
+           Alice Brown
+          </p>
+          <p class="text-xs text-gray-400 truncate">
+           Created a new user account
+          </p>
+         </div>
+         <time class="text-xs text-gray-500 whitespace-nowrap" datetime="2024-06-10T14:32">
+          2h ago
+         </time>
+        </li>
+        <li class="py-3 flex items-center space-x-3">
+         <img alt="User avatar with initials MT in purple background" class="w-10 h-10 rounded-full flex-shrink-0" height="40" src="https://storage.googleapis.com/a1aa/image/60508922-8c28-4d25-901d-5003c23c40ba.jpg" width="40"/>
+         <div class="flex-1 min-w-0">
+          <p class="text-sm font-semibold text-white truncate">
+           Michael Thompson
+          </p>
+          <p class="text-xs text-gray-400 truncate">
+           Updated sales report Q2
+          </p>
+         </div>
+         <time class="text-xs text-gray-500 whitespace-nowrap" datetime="2024-06-10T12:15">
+          4h ago
+         </time>
+        </li>
+        <li class="py-3 flex items-center space-x-3">
+         <img alt="User avatar with initials JS in blue background" class="w-10 h-10 rounded-full flex-shrink-0" height="40" src="https://storage.googleapis.com/a1aa/image/432615c4-92d9-4917-4b34-b9e65de2d81c.jpg" width="40"/>
+         <div class="flex-1 min-w-0">
+          <p class="text-sm font-semibold text-white truncate">
+           Jessica Smith
+          </p>
+          <p class="text-xs text-gray-400 truncate">
+           Performed system maintenance
+          </p>
+         </div>
+         <time class="text-xs text-gray-500 whitespace-nowrap" datetime="2024-06-09T18:45">
+          1d ago
+         </time>
+        </li>
+        <li class="py-3 flex items-center space-x-3">
+         <img alt="User avatar with initials RL in purple background" class="w-10 h-10 rounded-full flex-shrink-0" height="40" src="https://storage.googleapis.com/a1aa/image/427aea41-01ec-461e-1118-5dce405e6d28.jpg" width="40"/>
+         <div class="flex-1 min-w-0">
+          <p class="text-sm font-semibold text-white truncate">
+           Robert Lee
+          </p>
+          <p class="text-xs text-gray-400 truncate">
+           Added new product to catalog
+          </p>
+         </div>
+         <time class="text-xs text-gray-500 whitespace-nowrap" datetime="2024-06-09T15:30">
+          1d ago
+         </time>
+        </li>
+        <li class="py-3 flex items-center space-x-3">
+         <img alt="User avatar with initials EM in blue background" class="w-10 h-10 rounded-full flex-shrink-0" height="40" src="https://storage.googleapis.com/a1aa/image/20c4716e-345f-49f4-3c45-31110302570e.jpg" width="40"/>
+         <div class="flex-1 min-w-0">
+          <p class="text-sm font-semibold text-white truncate">
+           Emily Martinez
+          </p>
+          <p class="text-xs text-gray-400 truncate">
+           Changed user permissions
+          </p>
+         </div>
+         <time class="text-xs text-gray-500 whitespace-nowrap" datetime="2024-06-08T09:20">
+          2d ago
+         </time>
+        </li>
+       </ul>
+      </section>
+     </section>
+    </main>
+   </div>
+  </div>
+<script src="script.js"></script> </body>
+</html>
